@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'CampusConnect',
+  title: 'Cowork Campus',
   description: 'Connect with students for coworking and chill events.',
 };
 
