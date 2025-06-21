@@ -1,5 +1,12 @@
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileCard, { type Profile } from '@/components/profile-card';
+import EventCard from '@/components/event-card';
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Users, Lightbulb } from "lucide-react";
+
 
 const profiles: Profile[] = [
   { id: '1', name: 'Léa Martin', avatar: 'https://placehold.co/100x100.png', formation: 'BTS SIO', availability: 'Soirs & WE', objective: 'Réviser les partiels de dev web et de base de données. Prête pour des sessions intensives !', type: 'Travail', "data-ai-hint": "woman studying" },
@@ -12,6 +19,12 @@ const profiles: Profile[] = [
   { id: '8', name: 'Jules César', avatar: 'https://placehold.co/100x100.png', formation: 'Stratégie Militaire', availability: 'Toujours', objective: 'Franchir le Rubicon, puis discuter stratégie autour d\'une bière.', type: 'Mixte', "data-ai-hint": "roman emperor" },
 ];
 
+const events = [
+    { id: 1, type: 'Travail' as const, category: "Révision BTS", title: "Session de révision intensive", description: "", keywords: [], image: "https://placehold.co/600x400.png", date: "2024-09-15T10:00:00", location: "Bibliothèque", participants: { current: 12, max: 20 }, "data-ai-hint": "study group" },
+    { id: 2, type: 'Chill' as const, category: "Détente", title: "Pique-nique au parc", description: "", keywords: [], image: "https://placehold.co/600x400.png", date: "2024-09-18T12:30:00", location: "Parc Monceau", participants: { current: 8, max: 25 }, "data-ai-hint": "picnic park" },
+    { id: 3, type: 'Mixte' as const, category: "Projet & Fun", title: "Hackathon & Pizza", description: "", keywords: [], image: "https://placehold.co/600x400.png", date: "2024-09-20T09:00:00", location: "Campus ESGI", participants: { current: 15, max: 30 }, "data-ai-hint": "hackathon pizza" },
+]
+
 
 export default async function DashboardPage() {
   const workProfiles = profiles.filter(p => p.type === 'Travail');
@@ -19,7 +32,7 @@ export default async function DashboardPage() {
   const mixteProfiles = profiles.filter(p => p.type === 'Mixte');
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="container mx-auto px-4 py-8 md:py-12 space-y-12">
       <div className="mb-10 text-center">
         <h1 className="text-3xl md:text-4xl font-bold font-headline mb-2">Trouve ton binôme</h1>
         <p className="text-lg text-muted-foreground">Découvrez des profils compatibles pour travailler, échanger ou vous détendre.</p>
@@ -29,7 +42,7 @@ export default async function DashboardPage() {
         <TabsList className="grid w-full grid-cols-3 md:w-max md:mx-auto mb-8">
           <TabsTrigger value="work">Travail</TabsTrigger>
           <TabsTrigger value="chill">Chill</TabsTrigger>
-          <TabsTrigger value="mixed">Mixte</TabsTrigger>
+          <TabsTrigger value="mixte">Mixte</TabsTrigger>
         </TabsList>
         
         <TabsContent value="work">
@@ -46,7 +59,7 @@ export default async function DashboardPage() {
             ))}
           </div>
         </TabsContent>
-        <TabsContent value="mixed">
+        <TabsContent value="mixte">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {mixteProfiles.map(profile => (
               <ProfileCard key={profile.id} profile={profile} />
@@ -54,6 +67,44 @@ export default async function DashboardPage() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <div className="space-y-8">
+        <div className="flex justify-between items-center">
+            <h2 className="text-2xl md:text-3xl font-bold font-headline">Événements à la une</h2>
+             <Button variant="outline" asChild>
+                <Link href="/events">Voir tout</Link>
+            </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map(event => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Users className="h-6 w-6" /> Groupes</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground mb-4">Rejoignez des groupes de travail ou des communautés basées sur vos intérêts.</p>
+                 <Button variant="secondary">Explorer les groupes</Button>
+            </CardContent>
+        </Card>
+         <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6" /> Suggestions</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground mb-4">Recevez des recommandations de binômes et d'événements sur mesure.</p>
+                <Button variant="secondary">Affiner mes suggestions</Button>
+            </CardContent>
+        </Card>
+      </div>
+
     </div>
   );
 }
+
+    

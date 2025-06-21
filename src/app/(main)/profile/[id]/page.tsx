@@ -1,8 +1,9 @@
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { MessageSquare, UserPlus, Edit, Heart } from "lucide-react";
+import { MessageSquare, Heart, Edit, CalendarPlus } from "lucide-react";
 import Link from 'next/link';
 
 export default function ProfilePage({ params }: { params: { id: string } }) {
@@ -22,8 +23,17 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                     <p className="mt-2 text-foreground/80 max-w-prose">Passionné par le développement web et l'innovation. Toujours prêt à collaborer sur des projets excitants !</p>
                     
                     {!isOwnProfile && (
-                        <div className="mt-4 flex gap-2 justify-center md:justify-start">
-                            <Button><MessageSquare className="mr-2 h-4 w-4" /> Envoyer un message</Button>
+                        <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+                            <Button asChild>
+                                <Link href={`/messages/${params.id}`}>
+                                    <MessageSquare className="mr-2 h-4 w-4" /> Envoyer un message
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" asChild>
+                                <Link href={`/events/create?with=${params.id}`}>
+                                    <CalendarPlus className="mr-2 h-4 w-4" /> Proposer une session
+                                </Link>
+                            </Button>
                             <Button variant="outline" asChild>
                                 <Link href="/match/match-found">
                                     <Heart className="mr-2 h-4 w-4" /> Matcher
@@ -69,3 +79,5 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
       </div>
   );
 }
+
+    
