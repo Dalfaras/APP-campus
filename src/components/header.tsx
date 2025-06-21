@@ -1,4 +1,4 @@
-import { Mountain, Search, PlusCircle, Bell, User, Settings, LogOut, LayoutDashboard } from 'lucide-react'
+import { Mountain, Search, PlusCircle, Bell, User, Settings, LogOut, LayoutDashboard, Briefcase } from 'lucide-react'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -26,6 +26,9 @@ export default function Header() {
              </Link>
              <Link href="/events" className="text-muted-foreground transition-colors hover:text-foreground">
                 Événements
+             </Link>
+             <Link href="/coworking" className="text-muted-foreground transition-colors hover:text-foreground">
+                Espaces
              </Link>
              <Link href="/messages" className="text-muted-foreground transition-colors hover:text-foreground">
                 Messages
