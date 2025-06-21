@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { MessageSquare, UserPlus, Edit } from "lucide-react";
+import { MessageSquare, UserPlus, Edit, Heart } from "lucide-react";
 import Link from 'next/link';
 
 export default function ProfilePage({ params }: { params: { id: string } }) {
@@ -24,7 +24,11 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                     {!isOwnProfile && (
                         <div className="mt-4 flex gap-2 justify-center md:justify-start">
                             <Button><MessageSquare className="mr-2 h-4 w-4" /> Envoyer un message</Button>
-                            <Button variant="outline"><UserPlus className="mr-2 h-4 w-4" /> Ajouter comme ami</Button>
+                            <Button variant="outline" asChild>
+                                <Link href="/match/match-found">
+                                    <Heart className="mr-2 h-4 w-4" /> Matcher
+                                </Link>
+                            </Button>
                         </div>
                     )}
                      {isOwnProfile && (

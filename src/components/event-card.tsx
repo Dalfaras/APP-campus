@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, MapPin, Users, Sparkles, BrainCircuit } from 'lucide-react';
+import { Calendar, MapPin, Users, BrainCircuit } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import Link from 'next/link';
@@ -23,7 +23,6 @@ type Event = {
     current: number;
     max: number;
   };
-  reason?: string;
   "data-ai-hint"?: string;
 };
 
@@ -75,18 +74,8 @@ export default function EventCard({ event }: EventCardProps) {
             <span>{event.location}</span>
           </div>
         </div>
-        
-        {event.reason && (
-          <div className="mt-auto bg-accent/50 p-3 rounded-md border border-accent">
-            <div className="flex items-center gap-2 mb-1">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <h4 className="font-semibold text-sm">Pourquoi cet événement est pour vous</h4>
-            </div>
-            <p className="text-sm text-foreground/80">{event.reason}</p>
-          </div>
-        )}
       </CardContent>
-      <CardFooter className="flex justify-between items-center">
+      <CardFooter className="flex justify-between items-center mt-auto">
         <div className="flex items-center gap-2 text-sm">
           <Users className="h-4 w-4 text-muted-foreground" />
           <span className="text-muted-foreground">{event.participants.current} / {event.participants.max}</span>
