@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -6,6 +7,11 @@ import { Label } from "@/components/ui/label"
 import { Mountain } from "lucide-react"
 
 export default function LoginPage() {
+  const login = async () => {
+    'use server'
+    redirect('/dashboard')
+  }
+
   return (
     <Card className="mx-auto max-w-sm w-full">
       <CardHeader className="space-y-1 text-center">
@@ -17,24 +23,26 @@ export default function LoginPage() {
         <CardDescription>Entrez votre email pour vous connecter à votre compte</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@exemple.com" required />
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Mot de passe</Label>
-              <Link href="#" className="ml-auto inline-block text-sm underline">
-                Mot de passe oublié?
-              </Link>
+        <form action={login}>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="m@exemple.com" required />
             </div>
-            <Input id="password" type="password" required />
+            <div className="space-y-2">
+              <div className="flex items-center">
+                <Label htmlFor="password">Mot de passe</Label>
+                <Link href="/forgot-password" className="ml-auto inline-block text-sm underline">
+                  Mot de passe oublié?
+                </Link>
+              </div>
+              <Input id="password" type="password" required />
+            </div>
+            <Button type="submit" className="w-full">
+              Se connecter
+            </Button>
           </div>
-          <Button type="submit" className="w-full">
-            Se connecter
-          </Button>
-        </div>
+        </form>
         <div className="mt-4 text-center text-sm">
           Vous n'avez pas de compte?{" "}
           <Link href="/register" className="underline">

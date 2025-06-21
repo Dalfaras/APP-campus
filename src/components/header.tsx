@@ -30,13 +30,17 @@ export default function Header() {
           </div>
         </div>
         <div className="flex items-center gap-4 ml-auto">
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <Bell className="h-5 w-5" />
-            <span className="sr-only">Notifications</span>
+          <Button variant="ghost" size="icon" className="rounded-full" asChild>
+            <Link href="/notifications">
+                <Bell className="h-5 w-5" />
+                <span className="sr-only">Notifications</span>
+            </Link>
           </Button>
-          <Button>
-            <PlusCircle className="mr-2 h-5 w-5" />
-            Créer un événement
+          <Button asChild>
+            <Link href="/events/create">
+                <PlusCircle className="mr-2 h-5 w-5" />
+                Créer un événement
+            </Link>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -50,18 +54,24 @@ export default function Header() {
             <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Profil</span>
+              <DropdownMenuItem asChild>
+                <Link href="/profile/me">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profil</span>
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Paramètres</span>
+              <DropdownMenuItem asChild>
+                <Link href="/settings">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Paramètres</span>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Déconnexion</span>
+              <DropdownMenuItem asChild>
+                <Link href="/login">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Déconnexion</span>
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
