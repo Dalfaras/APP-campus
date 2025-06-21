@@ -10,9 +10,9 @@ export default function CreateEventPage() {
 
     const createEvent = async () => {
         'use server'
-        // Here you would typically save the event to a database
-        // For now, we just redirect to the events page
-        redirect('/dashboard');
+        // In a real app, you would save the event and get its ID
+        const newEventId = 1; // Placeholder ID
+        redirect(`/events/${newEventId}`);
     }
 
     return (

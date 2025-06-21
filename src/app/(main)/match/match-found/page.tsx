@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Heart, MessageCircle, Users } from 'lucide-react';
+import { Heart, MessageCircle } from 'lucide-react';
 
 export default function MatchFoundPage() {
   return (
@@ -23,7 +23,7 @@ export default function MatchFoundPage() {
                 </Avatar>
             </div>
           <CardTitle className="text-3xl font-headline">C'est un Match !</CardTitle>
-          <CardDescription>Vous et Marie Curie avez montré un intérêt mutuel. Lancez la conversation !</CardDescription>
+          <CardDescription>Vous et Marie Curie avez montré un intérêt mutuel. Lancez la conversation pour briser la glace !</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
             <Button size="lg" className="w-full" asChild>
@@ -31,13 +31,8 @@ export default function MatchFoundPage() {
                     <MessageCircle className="mr-2 h-4 w-4" /> Envoyer un message
                 </Link>
             </Button>
-            <Button size="lg" variant="outline" className="w-full" asChild>
-                 <Link href="/events/create?with=marie">
-                    <Users className="mr-2 h-4 w-4" /> Proposer un événement
-                </Link>
-            </Button>
             <Button variant="ghost" className="w-full" asChild>
-                <Link href="/dashboard">
+                <Link href="/match">
                     Continuer à chercher
                 </Link>
             </Button>

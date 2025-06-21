@@ -1,21 +1,35 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Paperclip, Send } from "lucide-react";
+import { Paperclip, Send, CalendarPlus, User } from "lucide-react";
 import Link from "next/link";
 
 export default function ChatPage({ params }: { params: { id: string } }) {
-    // In a real app, you would fetch chat history based on params.id
-    const chatPartner = { name: "Marie Curie", avatar: "https://placehold.co/40x40.png" };
+    // In a real app, you would fetch chat history and partner info based on params.id
+    const chatPartner = { id: "marie", name: "Marie Curie", avatar: "https://placehold.co/40x40.png" };
 
     return (
         <div className="container mx-auto h-[calc(100vh-4rem)] flex flex-col p-0">
-            <div className="flex items-center gap-4 p-4 border-b">
-                <Avatar>
-                    <AvatarImage src={chatPartner.avatar} alt={chatPartner.name} data-ai-hint="woman scientist"/>
-                    <AvatarFallback>{chatPartner.name.substring(0, 2)}</AvatarFallback>
-                </Avatar>
-                <h2 className="text-xl font-bold font-headline">{chatPartner.name}</h2>
+            <div className="flex items-center justify-between p-4 border-b">
+                <Link href={`/profile/${chatPartner.id}`} className="flex items-center gap-4 group">
+                    <Avatar>
+                        <AvatarImage src={chatPartner.avatar} alt={chatPartner.name} data-ai-hint="woman scientist"/>
+                        <AvatarFallback>{chatPartner.name.substring(0, 2)}</AvatarFallback>
+                    </Avatar>
+                    <h2 className="text-xl font-bold font-headline group-hover:underline">{chatPartner.name}</h2>
+                </Link>
+                 <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon" asChild>
+                         <Link href={`/profile/${chatPartner.id}`} title="Voir le profil">
+                           <User className="h-5 w-5" />
+                         </Link>
+                    </Button>
+                    <Button variant="ghost" size="icon" asChild>
+                         <Link href="/events/create" title="Créer un événement">
+                           <CalendarPlus className="h-5 w-5" />
+                         </Link>
+                    </Button>
+                 </div>
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {/* Incoming message */}
