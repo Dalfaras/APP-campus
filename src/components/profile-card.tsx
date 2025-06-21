@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Eye, UserPlus } from 'lucide-react';
+import { Eye, UserPlus, MessageCircle } from 'lucide-react';
 
 export type Profile = {
     id: string;
@@ -35,15 +35,23 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
                 <Badge variant="secondary" className="mb-2">Dispo: {profile.availability}</Badge>
                 <p className="text-sm text-foreground/90 flex-1">&quot;{profile.objective}&quot;</p>
             </CardContent>
-            <CardFooter className="flex flex-col gap-2 p-4 pt-0">
-                <Button asChild className="w-full">
-                    <Link href={`/profile/${profile.id}`}>
-                        <Eye className="mr-2 h-4 w-4" /> Voir le profil
+            <CardFooter className="flex justify-around items-center p-4 border-t">
+                 <Button variant="outline" size="icon" asChild>
+                    <Link href={`/messages/${profile.id}`} title="Discuter">
+                        <MessageCircle className="h-5 w-5" />
+                        <span className="sr-only">Discuter</span>
                     </Link>
                 </Button>
-                <Button asChild className="w-full">
-                     <Link href={`/match/match-found`}>
-                        <UserPlus className="mr-2 h-4 w-4" /> Matcher
+                <Button size="icon" asChild className="h-12 w-12">
+                     <Link href={`/match/match-found`} title="Matcher">
+                        <UserPlus className="h-6 w-6" />
+                        <span className="sr-only">Matcher</span>
+                    </Link>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                    <Link href={`/profile/${profile.id}`} title="Voir le profil">
+                        <Eye className="h-5 w-5" />
+                        <span className="sr-only">Voir le profil</span>
                     </Link>
                 </Button>
             </CardFooter>
