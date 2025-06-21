@@ -9,7 +9,7 @@ import { Mountain } from "lucide-react"
 export default function LoginPage() {
   const login = async () => {
     'use server'
-    redirect('/dashboard')
+    redirect('/match')
   }
 
   return (

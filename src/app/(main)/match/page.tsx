@@ -54,9 +54,6 @@ export default function MatchPage() {
                     </Button>
                 </div>
             </div>
-             <Button variant="link" asChild className="mt-8">
-                <Link href="/dashboard">Retour au Dashboard</Link>
-            </Button>
         </div>
     );
 }

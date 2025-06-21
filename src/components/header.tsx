@@ -1,4 +1,4 @@
-import { Mountain, Search, PlusCircle, Bell, User, Settings, LogOut } from 'lucide-react'
+import { Mountain, Search, PlusCircle, Bell, User, Settings, LogOut, LayoutDashboard } from 'lucide-react'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -16,19 +16,21 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Link href="/dashboard" className="mr-6 flex items-center gap-2">
+        <Link href="/match" className="mr-6 flex items-center gap-2">
           <Mountain className="h-6 w-6 text-primary" />
           <span className="font-bold font-headline text-lg">Cowork Campus</span>
         </Link>
-        <div className="flex-1">
-          <div className="relative w-full max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Rechercher des événements..."
-              className="pl-9"
-            />
-          </div>
-        </div>
+        <nav className="hidden md:flex items-center gap-4 text-sm font-medium">
+             <Link href="/dashboard" className="text-muted-foreground transition-colors hover:text-foreground">
+                Dashboard
+             </Link>
+             <Link href="/events" className="text-muted-foreground transition-colors hover:text-foreground">
+                Événements
+             </Link>
+             <Link href="/messages" className="text-muted-foreground transition-colors hover:text-foreground">
+                Messages
+             </Link>
+        </nav>
         <div className="flex items-center gap-4 ml-auto">
           <Button variant="ghost" size="icon" className="rounded-full" asChild>
             <Link href="/notifications">
@@ -54,6 +56,12 @@ export default function Header() {
             <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
               <DropdownMenuSeparator />
+               <DropdownMenuItem asChild>
+                <Link href="/dashboard">
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    <span>Dashboard</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/profile/me">
                     <User className="mr-2 h-4 w-4" />

@@ -9,7 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 export default function ProfileSetupPage() {
   const completeProfile = async () => {
     'use server'
-    redirect('/dashboard')
+    redirect('/match')
   }
 
   return (
@@ -49,7 +49,7 @@ export default function ProfileSetupPage() {
                      <p className="text-sm text-muted-foreground">Séparez les compétences par des virgules.</p>
                 </div>
 
-                <Button type="submit" className="w-full" size="lg">Aller au Dashboard</Button>
+                <Button type="submit" className="w-full" size="lg">Commencer à matcher</Button>
             </form>
         </CardContent>
         </Card>
