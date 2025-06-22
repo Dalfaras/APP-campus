@@ -5,7 +5,8 @@ import EventCard from '@/components/event-card';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Lightbulb } from "lucide-react";
+import { Users } from "lucide-react";
+import EventRecommendations from "@/components/event-recommendations";
 
 
 const profiles: Profile[] = [
@@ -94,15 +95,7 @@ export default async function DashboardPage() {
                  </Button>
             </CardContent>
         </Card>
-         <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6" /> Suggestions</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground mb-4">Recevez des recommandations de binômes et d'événements sur mesure.</p>
-                <Button variant="secondary">Affiner mes suggestions</Button>
-            </CardContent>
-        </Card>
+         <EventRecommendations />
       </div>
 
     </div>
