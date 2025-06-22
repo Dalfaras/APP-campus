@@ -89,7 +89,9 @@ export default async function DashboardPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-muted-foreground mb-4">Rejoignez des groupes de travail ou des communautés basées sur vos intérêts.</p>
-                 <Button variant="secondary">Explorer les groupes</Button>
+                 <Button asChild variant="secondary">
+                    <Link href="/group/1">Explorer les groupes</Link>
+                 </Button>
             </CardContent>
         </Card>
          <Card>
@@ -106,5 +108,3 @@ export default async function DashboardPage() {
     </div>
   );
 }
-
-    
