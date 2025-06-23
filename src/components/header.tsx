@@ -30,6 +30,9 @@ export default function Header() {
              <Link href="/coworking" className="text-muted-foreground transition-colors hover:text-foreground">
                 Espaces
              </Link>
+             <Link href="/annonces" className="text-muted-foreground transition-colors hover:text-foreground">
+                Annonces
+             </Link>
              <Link href="/messages" className="text-muted-foreground transition-colors hover:text-foreground">
                 Messages
              </Link>
