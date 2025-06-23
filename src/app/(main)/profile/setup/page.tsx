@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
-import { Book, Clapperboard, Code, CookingPot, Dumbbell, Gamepad, Headphones, Mic, Mountain, Palette, Plane, Tv, Users, Video, Drama } from 'lucide-react';
+import { Book, Clapperboard, CookingPot, Dumbbell, Gamepad2, Headphones, Mic, Mountain, Palette, Plane, Tv2, Video, Football, Soup } from 'lucide-react';
 
 
 const objectives = [
@@ -39,8 +39,8 @@ const availabilityDays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Sa
 const availabilityTimes = ['Matin', 'Après-midi', 'Soirée', 'Tard dans la nuit'];
 
 const interests = {
-    sports: [ {id: 'foot', label:'Foot', icon: <Drama />}, {id: 'basket', label: 'Basket', icon: <Dumbbell />}, {id: 'danse', label:'Danse', icon: <Mic />}, {id: 'muscu', label:'Muscu', icon: <Dumbbell />}, {id: 'yoga', label:'Yoga', icon: <Mountain />} ],
-    hobbies: [ {id: 'gaming', label: 'Jeux vidéo', icon: <Gamepad />}, {id: 'series', label: 'Séries', icon: <Tv />}, {id: 'music', label: 'Musique', icon: <Headphones />}, {id: 'reading', label: 'Lecture', icon: <Book />}, {id: 'cooking', label: 'Cuisine', icon: <CookingPot />}, {id: 'travel', label: 'Voyages', icon: <Plane />} ],
+    sports: [ {id: 'foot', label:'Foot', icon: <Football />}, {id: 'basket', label: 'Basket', icon: <Dumbbell />}, {id: 'danse', label:'Danse', icon: <Mic />}, {id: 'muscu', label:'Muscu', icon: <Dumbbell />}, {id: 'yoga', label:'Yoga', icon: <Mountain />} ],
+    hobbies: [ {id: 'gaming', label: 'Jeux vidéo', icon: <Gamepad2 />}, {id: 'series', label: 'Séries', icon: <Tv2 />}, {id: 'music', label: 'Musique', icon: <Headphones />}, {id: 'reading', label: 'Lecture', icon: <Book />}, {id: 'cooking', label: 'Cuisine', icon: <Soup />}, {id: 'travel', label: 'Voyages', icon: <Plane />} ],
     creative: [ {id: 'drawing', label: 'Dessin', icon: <Palette />}, {id: 'photo', label: 'Photo', icon: <Video />}, {id: 'video', label: 'Montage vidéo', icon: <Clapperboard />}, {id: 'writing', label: 'Écriture', icon: <Book />}, {id: 'singing', label: 'Chant', icon: <Mic />} ],
 }
 
@@ -256,5 +256,3 @@ export default function ProfileSetupPage() {
     </div>
   )
 }
-
-    
