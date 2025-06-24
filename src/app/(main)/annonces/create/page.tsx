@@ -54,6 +54,11 @@ export default function CreateAnnouncementPage() {
                             <Label htmlFor="location">Lieu</Label>
                             <Input id="location" placeholder="Paris, En ligne, Reims..." required/>
                         </div>
+                         <div className="space-y-2">
+                            <Label htmlFor="keywords">Mots-clés / Tags (séparés par une virgule)</Label>
+                            <Input id="keywords" placeholder="react, nodejs, marketing, colocation..." />
+                            <p className="text-sm text-muted-foreground">Aide les autres à trouver ton annonce plus facilement.</p>
+                        </div>
                         <div className="space-y-2">
                             <Label htmlFor="image">Image pour l'annonce</Label>
                             <Input id="image" type="file" />

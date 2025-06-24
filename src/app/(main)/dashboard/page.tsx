@@ -5,7 +5,7 @@ import EventCard from '@/components/event-card';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users } from "lucide-react";
+import { Users, Megaphone } from "lucide-react";
 import EventRecommendations from "@/components/event-recommendations";
 
 
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Card>
             <CardHeader>
                 <CardTitle className="flex items-center gap-2"><Users className="h-6 w-6" /> Groupes</CardTitle>
@@ -93,6 +93,17 @@ export default async function DashboardPage() {
                  <Button asChild variant="secondary">
                     <Link href="/group/1">Explorer les groupes</Link>
                  </Button>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Megaphone className="h-6 w-6" /> Annonces</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground mb-4">Trouvez un stage, une alternance, ou une colocation dans notre espace dédié.</p>
+                    <Button asChild variant="secondary">
+                    <Link href="/annonces">Explorer les annonces</Link>
+                    </Button>
             </CardContent>
         </Card>
          <EventRecommendations />
