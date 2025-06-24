@@ -1,8 +1,18 @@
+
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PlusCircle, Search } from 'lucide-react';
+import { PlusCircle, Search, SlidersHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import AnnouncementCard from '@/components/announcement-card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const announcements = [
     { id: '1', type: 'pro' as const, category: 'Alternance - Dev Web', title: 'Développeur Web Full-Stack (H/F)', author: 'Société XYZ', location: 'Reims', image: 'https://placehold.co/600x400.png', 'data-ai-hint': 'office computer' },
@@ -36,10 +46,34 @@ export default function AnnouncementsPage() {
                     <Input placeholder="Rechercher (ex: stage, react, paris)..." className="pl-10" />
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
-                    <Button variant="outline">Étudiant / Pro</Button>
-                    <Button variant="outline">Localisation</Button>
-                    <Button variant="outline">Catégorie</Button>
-                    <Button variant="outline">Date</Button>
+                     <Select>
+                        <SelectTrigger className="w-full md:w-[180px]">
+                            <SelectValue placeholder="Type (Pro/Étudiant)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">Tous les types</SelectItem>
+                            <SelectItem value="pro">Professionnel</SelectItem>
+                            <SelectItem value="student">Étudiant</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Select>
+                        <SelectTrigger className="w-full md:w-[180px]">
+                            <SelectValue placeholder="Catégorie" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">Toutes les catégories</SelectItem>
+                            <SelectItem value="alternance">Alternance</SelectItem>
+                            <SelectItem value="stage">Stage</SelectItem>
+                            <SelectItem value="job">Job étudiant</SelectItem>
+                            <SelectItem value="colocation">Colocation</SelectItem>
+                            <SelectItem value="entraide">Entraide</SelectItem>
+                            <SelectItem value="covoiturage">Covoiturage</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Button variant="outline">
+                        <SlidersHorizontal className="mr-2 h-4 w-4" />
+                        Plus de filtres
+                    </Button>
                 </div>
             </div>
 

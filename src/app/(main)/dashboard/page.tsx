@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Megaphone } from "lucide-react";
 import EventRecommendations from "@/components/event-recommendations";
+import AnnouncementCard from "@/components/announcement-card";
 
 
 const profiles: Profile[] = [
@@ -25,6 +26,12 @@ const events = [
     { id: 2, type: 'Chill' as const, category: "Détente", title: "Pique-nique au parc", description: "", keywords: [], image: "https://placehold.co/600x400.png", date: "2024-09-18T12:30:00", location: "Parc Monceau", participants: { current: 8, max: 25 }, "data-ai-hint": "picnic park" },
     { id: 3, type: 'Mixte' as const, category: "Projet & Fun", title: "Hackathon & Pizza", description: "", keywords: [], image: "https://placehold.co/600x400.png", date: "2024-09-20T09:00:00", location: "Campus ESGI", participants: { current: 15, max: 30 }, "data-ai-hint": "hackathon pizza" },
 ]
+
+const announcements = [
+    { id: '1', type: 'pro' as const, category: 'Alternance - Dev Web', title: 'Développeur Web Full-Stack (H/F)', author: 'Société XYZ', location: 'Reims', image: 'https://placehold.co/600x400.png', 'data-ai-hint': 'office computer' },
+    { id: '2', type: 'student' as const, category: 'Colocation', title: 'Cherche colocataire pour appart T2', author: 'Juliette D.', location: 'Troyes', image: 'https://placehold.co/600x400.png', 'data-ai-hint': 'apartment interior' },
+    { id: '3', type: 'pro' as const, category: 'Job étudiant', title: 'Vendeur/Vendeuse équipement de sport', author: 'Décathlon', location: 'Paris', image: 'https://placehold.co/600x400.png', 'data-ai-hint': 'retail store' },
+];
 
 
 export default async function DashboardPage() {
@@ -82,8 +89,22 @@ export default async function DashboardPage() {
           ))}
         </div>
       </div>
+      
+       <div className="space-y-8">
+        <div className="flex justify-between items-center">
+            <h2 className="text-2xl md:text-3xl font-bold font-headline">Dernières Annonces</h2>
+             <Button variant="outline" asChild>
+                <Link href="/annonces">Voir tout</Link>
+            </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {announcements.map(ad => (
+            <AnnouncementCard key={ad.id} announcement={ad} />
+          ))}
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card>
             <CardHeader>
                 <CardTitle className="flex items-center gap-2"><Users className="h-6 w-6" /> Groupes</CardTitle>
@@ -93,17 +114,6 @@ export default async function DashboardPage() {
                  <Button asChild variant="secondary">
                     <Link href="/group/1">Explorer les groupes</Link>
                  </Button>
-            </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Megaphone className="h-6 w-6" /> Annonces</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground mb-4">Trouvez un stage, une alternance, ou une colocation dans notre espace dédié.</p>
-                    <Button asChild variant="secondary">
-                    <Link href="/annonces">Explorer les annonces</Link>
-                    </Button>
             </CardContent>
         </Card>
          <EventRecommendations />

@@ -1,8 +1,9 @@
+
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { User, Building2, MapPin, Calendar, MessageCircle, Share2, Flag } from 'lucide-react';
+import { User, Building2, MapPin, Calendar, MessageCircle, Share2, Flag, Paperclip } from 'lucide-react';
 import Link from 'next/link';
 
 // Mock data, in a real app this would be fetched based on params.id
@@ -17,7 +18,10 @@ const announcement = {
     'data-ai-hint': 'office computer',
     date: '2024-09-01',
     description: "Société XYZ, leader dans le secteur de la tech, recherche un développeur web full-stack en alternance pour rejoindre son équipe dynamique. Vous travaillerez sur des projets innovants et utiliserez les dernières technologies (React, Node.js, TypeScript). \n\n Missions : \n - Participer à la conception et au développement de nouvelles fonctionnalités. \n - Maintenir et améliorer les applications existantes. \n - Collaborer avec les équipes produit et design. \n\n Profil recherché : \n - Étudiant en informatique (Bac+3 à Bac+5). \n - Bonne connaissance de JavaScript. \n - Motivé, curieux et autonome.",
-    tags: ["alternance", "dev web", "react", "full-stack", "reims"]
+    tags: ["alternance", "dev web", "react", "full-stack", "reims"],
+    attachments: [
+        { name: "Description_de_poste.pdf", url: "#" }
+    ]
 };
 
 const typeDetails = {
@@ -61,6 +65,25 @@ export default function AnnouncementDetailPage({ params }: { params: { id: strin
                         </div>
                     </CardContent>
                 </Card>
+                 {announcement.attachments && announcement.attachments.length > 0 && (
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Pièces jointes</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-2">
+                                {announcement.attachments.map((file, index) => (
+                                    <li key={index}>
+                                        <a href={file.url} className="flex items-center gap-2 text-primary hover:underline">
+                                            <Paperclip className="h-4 w-4" />
+                                            <span>{file.name}</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                )}
             </div>
             <div className="space-y-6">
                  <Card>

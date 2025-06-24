@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -50,18 +51,31 @@ export default function CreateAnnouncementPage() {
                                 <Input id="category" placeholder="Colocation, Stage, Job, Entraide..." required />
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="location">Lieu</Label>
-                            <Input id="location" placeholder="Paris, En ligne, Reims..." required/>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div className="space-y-2">
+                                <Label htmlFor="location">Lieu</Label>
+                                <Input id="location" placeholder="Paris, En ligne, Reims..." required/>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="date">Date / Période</Label>
+                                <Input id="date" placeholder="Ex: Septembre 2024, Dès que possible..." />
+                            </div>
                         </div>
                          <div className="space-y-2">
                             <Label htmlFor="keywords">Mots-clés / Tags (séparés par une virgule)</Label>
                             <Input id="keywords" placeholder="react, nodejs, marketing, colocation..." />
                             <p className="text-sm text-muted-foreground">Aide les autres à trouver ton annonce plus facilement.</p>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="image">Image pour l'annonce</Label>
-                            <Input id="image" type="file" />
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="image">Image pour l'annonce</Label>
+                                <Input id="image" type="file" />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="attachments">Pièces jointes</Label>
+                                <Input id="attachments" type="file" />
+                                <p className="text-sm text-muted-foreground">Joindre un PDF, une image (optionnel).</p>
+                            </div>
                         </div>
                         <Button type="submit" className="w-full" size="lg">Publier mon annonce</Button>
                     </form>
