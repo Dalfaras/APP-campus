@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { User, Building2, MapPin, Calendar, MessageCircle, Share2, Flag, Paperclip } from 'lucide-react';
+import { User, Building2, MapPin, Calendar, MessageCircle, Share2, Flag, Paperclip, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 
 // Mock data, in a real app this would be fetched based on params.id
@@ -24,13 +24,13 @@ const announcement = {
     ]
 };
 
-const typeDetails = {
+const typeDetails: Record<'pro' | 'student', { Icon: LucideIcon, label: string }> = {
   pro: {
-    icon: <Building2 className="h-6 w-6" />,
+    Icon: Building2,
     label: 'Annonce professionnelle'
   },
   student: {
-    icon: <User className="h-6 w-6" />,
+    Icon: User,
     label: 'Annonce étudiante'
   }
 };
@@ -38,6 +38,7 @@ const typeDetails = {
 
 export default function AnnouncementDetailPage({ params }: { params: { id: string } }) {
   const details = typeDetails[announcement.type];
+  const { Icon } = details;
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
@@ -97,7 +98,7 @@ export default function AnnouncementDetailPage({ params }: { params: { id: strin
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2">{details.icon} À propos de l'annonceur</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><Icon className="h-6 w-6" /> À propos de l'annonceur</CardTitle>
                     </CardHeader>
                      <CardContent className="space-y-2">
                         <p className="font-semibold text-lg">{announcement.author}</p>
