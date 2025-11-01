@@ -33,7 +33,8 @@ service cloud.firestore {
 
     match /matches/{id} {
       allow read: if signed() && (resource.data.studentId == request.auth.uid || resource.data.companyId == request.auth.uid);
-      allow create: if hasRole("etudiant") && request.resource.data.studentId == request.auth.uid;
+      allow create: if request.resource.data.studentId == request.auth.uid
+        && (hasRole("etudiant") || !exists(/databases/$(database)/documents/users/$(request.auth.uid)));
       allow update: if signed() && (request.auth.uid == resource.data.studentId || request.auth.uid == resource.data.companyId);
       allow delete: if admin() || request.auth.uid == resource.data.studentId;
     }
@@ -43,7 +44,9 @@ service cloud.firestore {
       allow create: if signed()
         && request.resource.data.participants.hasAny([request.auth.uid])
         && request.resource.data.audience in ["pro", "etudiant"];
-      allow update: if admin();
+      allow update: if signed()
+        && resource.data.participants.hasAny([request.auth.uid])
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["lastMessageAt"]);
     }
 
     match /chats/{roomId}/messages/{msgId} {

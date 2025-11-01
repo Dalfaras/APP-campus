@@ -18,4 +18,8 @@ export const firebaseApp = app;
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-export const functions = getFunctions(app);
+
+const functionsRegion = process.env.NEXT_PUBLIC_FB_FUNCTIONS_REGION;
+export const functions = functionsRegion
+  ? getFunctions(app, functionsRegion)
+  : getFunctions(app);
