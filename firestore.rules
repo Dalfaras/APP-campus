@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signed() { return request.auth != null; }
+    function is(uid) { return signed() && request.auth.uid == uid; }
+
+    function userProfile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function hasRole(r) {
+      return signed() && (
+        request.auth.token.role == r || userProfile().data.role == r
+      );
+    }
+
+    function admin() {
+      return signed() && (
+        request.auth.token.admin == true || hasRole("admin")
+      );
+    }
+
+    match /users/{uid} {
+      allow read: if signed();
+      allow create: if is(uid);
+      allow update: if is(uid) || admin();
+    }
+
+    match /announcements/{id} {
+      allow read: if true;
+      allow create, update, delete: if hasRole("entreprise") || admin();
+    }
+
+    match /matches/{id} {
+      allow read: if signed() && (resource.data.studentId == request.auth.uid || resource.data.companyId == request.auth.uid);
+      allow create: if hasRole("etudiant") && request.resource.data.studentId == request.auth.uid;
+      allow update: if signed() && (request.auth.uid == resource.data.studentId || request.auth.uid == resource.data.companyId);
+      allow delete: if admin() || request.auth.uid == resource.data.studentId;
+    }
+
+    match /chats/{roomId} {
+      allow read: if signed() && resource.data.participants.hasAny([request.auth.uid]);
+      allow create: if signed()
+        && request.resource.data.participants.hasAny([request.auth.uid])
+        && request.resource.data.audience in ["pro", "etudiant"];
+      allow update: if admin();
+    }
+
+    match /chats/{roomId}/messages/{msgId} {
+      allow read: if signed() && get(/databases/$(database)/documents/chats/$(roomId)).data.participants.hasAny([request.auth.uid]);
+      allow create: if signed()
+        && request.resource.data.authorId == request.auth.uid
+        && get(/databases/$(database)/documents/chats/$(roomId)).data.participants.hasAny([request.auth.uid]);
+      allow update, delete: if admin() || request.auth.uid == resource.data.authorId;
+    }
+
+    match /events/{id} {
+      allow read: if true;
+      allow create, update, delete: if hasRole("entreprise") || admin();
+    }
+
+    match /verifications/{uid} {
+      allow read, create, update: if is(uid) || admin();
+    }
+
+    match /coworking/{id} {
+      allow read: if true;
+      allow create, update, delete: if ((hasRole("entreprise") && request.resource.data.ownerId == request.auth.uid) || admin());
+    }
+
+    match /reports/{id} {
+      allow create: if signed();
+      allow read: if admin();
+    }
+
+    match /logs/{id} {
+      allow create: if signed();
+      allow read: if admin();
+    }
+  }
+}

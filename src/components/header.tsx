@@ -17,7 +17,7 @@ export default function Header() {
       <div className="container flex h-16 items-center">
         <Link href="/match" className="mr-6 flex items-center gap-2">
           <Mountain className="h-6 w-6 text-primary" />
-          <span className="font-bold font-headline text-lg">Cowork Campus</span>
+          <span className="font-bold font-headline text-lg">APP Campus</span>
         </Link>
         <nav className="hidden md:flex items-center gap-4 text-sm font-medium">
              <Link href="/dashboard" className="text-muted-foreground transition-colors hover:text-foreground">
