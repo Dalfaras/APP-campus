@@ -1,6 +1,5 @@
-import { Mountain, Search, PlusCircle, Bell, User, Settings, LogOut, LayoutDashboard, Briefcase } from 'lucide-react'
+import { Mountain, PlusCircle, Bell, User, Settings, LogOut, LayoutDashboard, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -32,6 +31,9 @@ export default function Header() {
              </Link>
              <Link href="/annonces" className="text-muted-foreground transition-colors hover:text-foreground">
                 Annonces
+             </Link>
+             <Link href="/verification" className="text-muted-foreground transition-colors hover:text-foreground">
+                Vérification
              </Link>
              <Link href="/messages" className="text-muted-foreground transition-colors hover:text-foreground">
                 Messages
@@ -72,6 +74,12 @@ export default function Header() {
                 <Link href="/profile/me">
                     <User className="mr-2 h-4 w-4" />
                     <span>Profil</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/verification">
+                    <ShieldCheck className="mr-2 h-4 w-4" />
+                    <span>Vérification</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
